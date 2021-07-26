@@ -9,6 +9,10 @@ jobs:
   Build And Push Dev:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
       - name: Build image
         run: docker build -t proxy .
       - name: Push to ECR

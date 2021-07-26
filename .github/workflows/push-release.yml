@@ -9,6 +9,10 @@ jobs:
   Build And Push Release:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
       - name: Get the version
         id: get_version
         run: |
