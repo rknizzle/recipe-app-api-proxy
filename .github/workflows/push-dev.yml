@@ -26,5 +26,5 @@ jobs:
           pip3 install awscli
           aws ecr get-login-password --region us-east-1 | docker login --username AWS \
           --password-stdin 224333873360.dkr.ecr.us-east-1.amazonaws.com/recipe-app-api-proxy
-          docker tag proxy:latest $ECR_REPO:dev
-          docker push $ECR_REPO:dev
+          docker tag proxy:latest ${{ secrets.ECR_REPO }}:dev
+          docker push ${{ secrets.ECR_REPO }}:dev
