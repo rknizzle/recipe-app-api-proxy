@@ -6,7 +6,7 @@ on:
      - master
 
 jobs:
-  Build And Push Dev:
+  Build-And-Push-Dev:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -17,7 +17,6 @@ jobs:
         run: docker build -t proxy .
       - name: Push to ECR
         run: |
-          #apt-get install python3
           pip3 install awscli
           $(aws ecr get-login-password)
           docker tag proxy:latest $ECR_REPO:dev
