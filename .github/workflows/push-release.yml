@@ -30,7 +30,8 @@ jobs:
       - name: Push to ECR
         run: |
           pip3 install awscli
-          $(aws ecr get-login-password --region us-east-1)
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS \
+          --password-stdin 224333873360.dkr.ecr.us-east-1.amazonaws.com/recipe-app-api-proxy
 
           TAGGED_ECR_REPO=${ECR_REPO}:${{ steps.previous_version.outputs.version }}
           # tag and push to the version
