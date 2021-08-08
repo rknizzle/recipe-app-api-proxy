@@ -3,7 +3,8 @@ name: Push-Release
 on:  
   push:
     tags:
-    - '^*-release$'
+      - '*'
+      #- '^*-release$'
 
 jobs:
   Build-And-Push-Release:
