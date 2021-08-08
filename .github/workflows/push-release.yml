@@ -3,7 +3,7 @@ name: Push-Release
 on:  
   push:
     tags:
-    - '-release$'
+    - '*-release'
 
 jobs:
   Build-And-Push-Release:
@@ -33,7 +33,7 @@ jobs:
           aws ecr get-login-password --region us-east-1 | docker login --username AWS \
           --password-stdin 224333873360.dkr.ecr.us-east-1.amazonaws.com/recipe-app-api-proxy
 
-          TAGGED_ECR_REPO=${{ secrets.ECR_REPO }}:${{ steps.previous_version.outputs.version }}
+          TAGGED_ECR_REPO=${{ secrets.ECR_REPO }}:${{ steps.get_version.outputs.version }}
           # tag and push to the version
           docker tag proxy:latest $TAGGED_ECR_REPO
           docker push $TAGGED_ECR_REPO
